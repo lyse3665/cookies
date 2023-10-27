@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>cookies</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container">
+      {{cookie_order}}
+        <h1>Change Order</h1>
+        <a href="/cookies">Back to Orders</a>
+        
+        <form  action = "/cookies/update" method="post">
+        {% with messages = get_flashed_messages() %}     <!-- declare a variable called messages -->
+            {% if messages %}                            <!-- check if there are any messages -->
+                {% for message in messages %}            <!-- loop through the messages -->
+                    <p class="error">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+                    <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" class="form-control" value="{{cookie_order.name}}">
+
+            <div class="form-group">
+                <label for="cookie_type">Cookie_Type</label>
+                <input type="text" name="cookie_type" class="form-control" value="{{cookie_order.cookie_type}}">
+            </div>
+            </div>
+            <div class="form-group">
+                <label for="num_boxes">Number of Boxes</label>
+                <input type="number" name="num_boxes" class="form-control" value="{{cookie_order.num_boxes}}">
+            </div>
+            <div class="form-group">
+              <input type="hidden" name="id" value="{{cookie_order.id}}">
+              <input class="btn btn-primary" type="submit" value="Submit">
+          </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+  </body>
+  </body>
+</html>
